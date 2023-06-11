@@ -19,7 +19,7 @@ router.post('/create', (req, res) =>{
         name, 
         description, 
         imageUrl, 
-        difficultyLevel,
+        difficultyLevel: Number(difficultyLevel),
     });
     res.redirect('/');
 });
