@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const url = 'mongodb://localhost:27017';
+const uri = 'mongodb://127.0.0.1:27017/workshop'
 
 async function dbConnect(){
-    await mongoose.connect(url);
+    await mongoose.connect(uri);
 }
 
 module.exports = dbConnect;
