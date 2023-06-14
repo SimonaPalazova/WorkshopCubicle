@@ -25,6 +25,7 @@ router.post('/create', async (req, res) => {
     res.redirect('/');
 });
 
+//TO doo
 router.get('/:cubeId/details', async (req, res) => {
     const cube = await cubeManager.getOne(req.params.cubeId).lean();
 
