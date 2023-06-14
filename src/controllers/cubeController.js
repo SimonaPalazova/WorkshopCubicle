@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const cubeManager = require('../managers/cubeManager');
 
+const accessoryManager = require('../managers/accessoryManager');
+
 //Path is /cubes/create
 router.get('/create', (req, res) => {
     res.render('create');
@@ -28,7 +30,7 @@ router.post('/create', async (req, res) => {
 //TO doo
 router.get('/:cubeId/details', async (req, res) => {
     const cube = await cubeManager.getOne(req.params.cubeId).lean();
-
+    
     if(!cube){
         return res.redirect('/404');
     }
@@ -37,7 +39,10 @@ router.get('/:cubeId/details', async (req, res) => {
 }); 
 
 router.get('/:cubeId/attach-accessory', async(req, res) => {
-    res.render('accessory/attach')
+    const cube = await cubeManager.getOne(req.params.cubeId).lean();
+    const accessories = await accessoryManager.getAll().lean();
+
+    res.render('accessory/attach', { cube, accessories });
 })
 
 module.exports = router;
